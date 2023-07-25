@@ -275,20 +275,7 @@ function handleLinkClick(e) {
   a:hover {
     opacity: 0.8;
   }
-  li{
-  
-  list-style: none;
-  font-size: 24px;
-  line-height: 1.2;
-  text-transform: uppercase;
-  letter-spacing: 1.7px;
-    width: 100vw;    
-    color: burlywood;
-    text-decoration: none;
-    transition: opacity 0.3s;
-    margin: 0;
-    text-align: center;
-}
+
     }
 </style>
 

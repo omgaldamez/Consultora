@@ -102,7 +102,7 @@ function handleTouchEnd() {
   on:touchstart={handleTouchStart}
   on:touchmove={handleTouchMove}
   on:touchend={handleTouchEnd}>
-    {#each [...numCards, ...numCards, ...numCards] as card, index}
+    {#each numCards as card, index}
       <div
         class="cards-container"
         role="button"
