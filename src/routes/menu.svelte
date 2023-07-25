@@ -1,8 +1,31 @@
 <script>
   import { onMount } from 'svelte';
+  import { tweened } from 'svelte/motion';
 
   let transitionEnded = false;
   let isMenuOpen = false;
+
+  // Create a tweened store for scroll position
+  const scrollY = tweened(0, { duration: 500, easing: t => t * t * t });
+
+  // Function to handle smooth scrolling
+  function smoothScroll(targetY) {
+    scrollY.set(window.scrollY);
+    scrollY.update(value => targetY);
+  }
+
+  
+// Function to handle link clicks
+function handleLinkClick(e) {
+  e.preventDefault();
+  const target = document.querySelector(e.target.getAttribute('href')); // Get the target element
+  target.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the target element
+  linkClicked = true;
+  // Reset linkClicked to false after a short delay
+  setTimeout(() => {
+    linkClicked = false;
+  }, 500); // Adjust the timeout value to your preference
+}
 
   onMount(() => {
     setTimeout(() => {
@@ -59,15 +82,8 @@
   <p></p>
   <p></p>
   <a href="/" target="_top"><li>Home</li></a>
-  <a href="/cards" target="_top"><li>Cards</li></a>
-  <a href="/rect" target="_top"><li>Bar Graph</li></a>
-  <a href="/circle" target="_top"><li>Circle</li></a>
-  <a href="https://crearcirc.z19.web.core.windows.net/" target="_blank"><li>Circle D3</li></a>
-  <a href="/circleA" target="_top"><li>Circle A</li></a>
-  <a href="/circleB" target="_top"><li>Circle B</li></a>
-  <a href="/circleC" target="_top"><li>Circle C</li></a>
-  <a href="https://dvizhealtheconomics.z19.web.core.windows.net/" target="_blank"><li>Health Economics</li></a>
-  <a href="/guides" target="_top"><li>Guides</li></a>
+  <a href="#Pag2" target="_top" on:click={handleLinkClick}><li>Portafolio</li></a>
+
 </nav>
 
 <style>
@@ -151,13 +167,10 @@ li:hover{
     width: 25vw;
     height: 100vh;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex:1;
-    transform: translateX(-100%);
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.5);
   transition: all 600ms cubic-bezier(0.62, 0.04, 0.3, 1.56);
   transition-delay: 100ms;
     z-index: 999; /* Added z-index to bring the menu to the front */
