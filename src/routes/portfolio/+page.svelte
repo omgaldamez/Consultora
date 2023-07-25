@@ -97,11 +97,11 @@ function handleTouchEnd() {
 
 </script>
 <div class="portBkg">
-<div class="cards-viewport" on:wheel={handleScroll} on:touchstart={handleTouchStart} on:touchmove={handleTouchMove} on:touchend={handleTouchEnd}
-on:touchstart={handleTouchStart}
-on:touchmove={handleTouchMove}
-on:touchend={handleTouchEnd}>
-  <div class="cards-wrapper">
+<div class="cards-viewport">
+  <div class="cards-wrapper" on:wheel={handleScroll} on:touchstart={handleTouchStart} on:touchmove={handleTouchMove} on:touchend={handleTouchEnd}
+  on:touchstart={handleTouchStart}
+  on:touchmove={handleTouchMove}
+  on:touchend={handleTouchEnd}>
     {#each [...numCards, ...numCards, ...numCards] as card, index}
       <div
         class="cards-container"
@@ -199,7 +199,7 @@ a:hover{
     justify-content: flex-start;
     align-items: center;
     width: 90vw;
-    height: 100vh;
+    height: 70vh;
     border-radius: 8px;
     /* Removed height: 80vh; */
     /* Removed scrollbar-width: none; */
@@ -317,13 +317,12 @@ a:hover{
   }
 
   /* Responsive styles for mobile */
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .cards-viewport {
-      width: 90vw;
-      height: 60vh; /* Adjust height as needed */
-      flex-direction: column; /* Stack cards vertically */
+      height: 100vh; /* Adjust height as needed */
       justify-content: flex-start;
       align-items: center;
+      margin: 0 5vh;
     }
 
     .cards-wrapper {
@@ -331,14 +330,6 @@ a:hover{
       padding: 0;
       gap: 0.5rem;
       align-items: center;
-    }
-
-    .cards-container {
-      /* Adjust flex and width for mobile */
-      flex: 0 0 auto;
-      width: 70vw; /* Adjust card width for mobile */
-      align-items: center;
-      flex-wrap: nowrap;
     }
 
     .content-container p {

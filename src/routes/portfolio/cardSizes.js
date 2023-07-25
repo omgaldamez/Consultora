@@ -15,6 +15,8 @@
     export let contentBackgClicked =
     "background-color: rgba(0, 0, 0, 0.5)";
 
+    updateWindowSize
+
   // Function to update the window size when the resize event is triggered
   export const updateWindowSize = () => {
     windowWidth = window.innerWidth;
@@ -22,8 +24,7 @@
     console.log("WINDOW WIDTH: ", windowWidth);
     if (windowWidth <= desktopBreakpoint) {
       console.log("ES MENOR");
-      cardSizeBase = "width: 60vw; height: 50vh; opacity: 0.95;";
-      cardSizeHover = "width: 60vw; height: 60vh; opacity: 1;";
-      cardSizeClicked = "width: 70vw; height: 60vh; opacity: 1;";
+      cardSizeBase = "width: 50vw; height: 50vh; opacity: 0.95;";
+      cardSizeClicked = "width: 80vw; height: 60vh; opacity: 1;";
     }
   };

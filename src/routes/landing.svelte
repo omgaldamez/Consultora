@@ -51,6 +51,34 @@
       <div
         class="side esqDer"
       >
+
+      
+      <a href="/circle" target="_blank">Svelte Circle</a>
+      <a href="/cards" target="_blank">Cards</a>
+      <a
+        href="https://dvizhealtheconomics.z19.web.core.windows.net/"
+        target="_blank">Health Economics</a
+      >
+      <a href="https://crearcirc.z19.web.core.windows.net/" target="_blank"
+        >Circle D3</a
+      >
+      <a
+        href="https://www.hindawi.com/journals/js/2017/8910470/"
+        target="_blank">Heart Rate Variability</a
+      >
+      <a
+        href="http://ciecpress.centro.edu.mx/ojs/index.php/CentroTI/article/view/625"
+        target="_blank">Economía Creativa</a
+      >
+      <a
+        href="https://www.informationisbeautifulawards.com/showcase/5123-how-mexico-s-public-spending-on-health-has-been-exercised-over-four-federal-administrations"
+        target="_blank">IIB 2022</a
+      >
+      <a class="lastLink"
+        href="https://www.linkedin.com/in/omar-gald%C3%A1mez-cruz-134728187"
+        target="_blank">Linkedin</a
+      >
+
       </div>
   </div>
   {/if}
@@ -58,6 +86,26 @@
 </div>
 
 <style>
+
+a {
+    margin-bottom: 1rem;
+    color: cornsilk;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    padding-right: 50px;
+    font-size: 1.5vw;
+    margin: 8px 0;
+    cursor: pointer;
+    z-index: 2;
+      margin-left: 36px;
+  }
+
+  a:hover {
+    color: aliceblue;
+      text-decoration: aliceblue;
+  }
+
+
 .landBkg{
     background: linear-gradient(-60deg, #B05846, #e2725b, #B05846);
     background-size: 400% 400%;
@@ -271,6 +319,7 @@ margin-bottom: 36px;
     margin: 24px;
   }
 
+
   /* Adjust font size for smaller window width */
   @media screen and (max-width: 640px) {
     .hero {
@@ -304,17 +353,23 @@ margin-bottom: 36px;
       border-left: 0px solid #375066;
     }
 
+  
+
     .slotContent {
       /* background-color: rgba(255, 255, 255, 0.2); */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 80vw;
-      max-width: 80vw;
-      height: 80vh;
+      width: 100vw;
+      height: 100vh;
       text-align: center;
       margin: 0;
+    }
+
+    a {
+      font-size: 1rem;
+      margin-left: 36px;
     }
 
     h1 {
@@ -324,10 +379,6 @@ margin-bottom: 36px;
     }
 
     h2 {
-      color: #634b46;
-      font-family: "Montserrat", sans-serif;
-      text-align: justify;
-      align-items: left;
       font-size: 1rem;
       margin: 8px 24px;
       margin-bottom: 8px;
