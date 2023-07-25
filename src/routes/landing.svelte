@@ -47,7 +47,7 @@ function handleLinkClick(e) {
 }
 
 </script>
-<div class="landBkg">
+<div id="Pag1" class="landBkg">
 <div 
   class="slotContent"
   transition:fade={{ duration: 300 }}
