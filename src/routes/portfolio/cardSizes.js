@@ -15,8 +15,6 @@
     export let contentBackgClicked =
     "background-color: rgba(0, 0, 0, 0.5)";
 
-    updateWindowSize
-
   // Function to update the window size when the resize event is triggered
   export const updateWindowSize = () => {
     windowWidth = window.innerWidth;

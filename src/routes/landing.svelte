@@ -30,7 +30,8 @@
 >
 {#if visible}
   <div class="hero">
-    <div class="intro esqIzq">
+    <!-- Agregar esqIzq en intro -->
+    <div class="intro">
         <h1 transition:fly={{ y: 50, duration: 2000, delay: 500 }}>
           {@html `<strong>Somos</strong>`}
         </h1>
@@ -48,35 +49,17 @@
           {@html `Transformamos <strong>datos</strong> complejos en <strong>visualizaciones</strong> con <strong>data storytelling</strong>`}
         </p>
     </div>
+    <!-- Agregar esqDer en side -->
       <div
-        class="side esqDer"
+        class="side"
       >
 
       
-      <a href="/circle" target="_blank">Svelte Circle</a>
-      <a href="/cards" target="_blank">Cards</a>
+      <a href="/" target="_top">Servicios</a>
+      <a href="/" target="_top">Portafolio</a>
       <a
-        href="https://dvizhealtheconomics.z19.web.core.windows.net/"
-        target="_blank">Health Economics</a
-      >
-      <a href="https://crearcirc.z19.web.core.windows.net/" target="_blank"
-        >Circle D3</a
-      >
-      <a
-        href="https://www.hindawi.com/journals/js/2017/8910470/"
-        target="_blank">Heart Rate Variability</a
-      >
-      <a
-        href="http://ciecpress.centro.edu.mx/ojs/index.php/CentroTI/article/view/625"
-        target="_blank">Economía Creativa</a
-      >
-      <a
-        href="https://www.informationisbeautifulawards.com/showcase/5123-how-mexico-s-public-spending-on-health-has-been-exercised-over-four-federal-administrations"
-        target="_blank">IIB 2022</a
-      >
-      <a class="lastLink"
-        href="https://www.linkedin.com/in/omar-gald%C3%A1mez-cruz-134728187"
-        target="_blank">Linkedin</a
+        href="/"
+        target="_top">Contacto</a
       >
 
       </div>
@@ -287,7 +270,7 @@ margin-bottom: 36px;
     height: 60vh;
     width: 50vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: center;
   }
