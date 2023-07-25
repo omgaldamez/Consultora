@@ -84,7 +84,7 @@ function handleLinkClick(e) {
   <p></p>
   <p></p>
   <p></p>
-  <a href="/" target="_top">Home</a>
+  <a href="/" target="_top" on:click={handleLinkClick}>Home</a>
   <a href="#Pag2" target="_top" on:click={handleLinkClick}>Portafolio</a>
 
   <p></p>
