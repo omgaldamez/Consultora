@@ -81,9 +81,18 @@ function handleLinkClick(e) {
   <p></p>
   <p></p>
   <p></p>
-  <a href="/" target="_top"><li>Home</li></a>
-  <a href="#Pag2" target="_top" on:click={handleLinkClick}><li>Portafolio</li></a>
+  <p></p>
+  <p></p>
+  <p></p>
+  <a href="/" target="_top">Home</a>
+  <a href="#Pag2" target="_top" on:click={handleLinkClick}>Portafolio</a>
 
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
 </nav>
 
 <style>
@@ -137,25 +146,6 @@ function handleLinkClick(e) {
     clear: both;
   }
 
-li{
-  
-  list-style: none;
-  font-size: 24px;
-  line-height: 2.2;
-  text-transform: uppercase;
-  letter-spacing: 1.7px;
-    width: 25vw;    
-    color: burlywood;
-    text-decoration: none;
-    transition: opacity 0.3s;
-    margin: 0;
-}
-
-li:hover{
-    background-color: rgba(0, 0, 0, 0.5);  
-    color: aliceblue;
-
-}
 
 
   /* CSS styles for the links in the header */
@@ -167,10 +157,13 @@ li:hover{
     width: 25vw;
     height: 100vh;
     padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    background-color: rgba(0, 0, 0, 0.5);
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex:1;
+    transform: translateX(-100%);
   transition: all 600ms cubic-bezier(0.62, 0.04, 0.3, 1.56);
   transition-delay: 100ms;
     z-index: 999; /* Added z-index to bring the menu to the front */
@@ -181,9 +174,6 @@ li:hover{
     transform: translateX(0);
   }
   
-nav:hover{
-    background-color: rgba(255, 255, 255, 0.1);
-}
 
   a {
     margin-bottom: 1rem;
@@ -192,10 +182,15 @@ nav:hover{
     transition: opacity 0.3s;
     padding-right: 50px;
     flex:1;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+    width: 5vw;    
+    height:5vh;
   }
 
   a:hover {
     opacity: 0.8;
+    color: aliceblue;
   }
 
   @media (max-width: 640px) {
