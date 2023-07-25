@@ -3,11 +3,22 @@
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
   import "../styles/global.css";
+  import { tweened } from 'svelte/motion';
 
   // Initialize variables for tracking link clicks and transition status
   let linkClicked = false;
   let transitionEnded = false;
   let visible = false;
+
+
+  // Create a tweened store for scroll position
+  const scrollY = tweened(0, { duration: 500, easing: t => t * t * t });
+
+  // Function to handle smooth scrolling
+  function smoothScroll(targetY) {
+    scrollY.set(window.scrollY);
+    scrollY.update(value => targetY);
+  }
 
   // Perform actions on component mount
   onMount(() => {
@@ -21,9 +32,23 @@
       transitionEnded = true;
     });
   });
+
+
+// Function to handle link clicks
+function handleLinkClick(e) {
+  e.preventDefault();
+  const target = document.querySelector(e.target.getAttribute('href')); // Get the target element
+  target.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the target element
+  linkClicked = true;
+  // Reset linkClicked to false after a short delay
+  setTimeout(() => {
+    linkClicked = false;
+  }, 500); // Adjust the timeout value to your preference
+}
+
 </script>
 <div class="landBkg">
-<div
+<div 
   class="slotContent"
   transition:fade={{ duration: 300 }}
   class:page-transition={linkClicked && transitionEnded}
@@ -54,13 +79,8 @@
         class="side"
       >
 
-      
-      <a href="/" target="_top">Servicios</a>
-      <a href="/" target="_top">Portafolio</a>
-      <a
-        href="/"
-        target="_top">Contacto</a
-      >
+      <a href="#Pag2" target="_top" on:click={handleLinkClick}>Portafolio</a>
+
 
       </div>
   </div>

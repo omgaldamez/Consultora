@@ -96,7 +96,7 @@ function handleTouchEnd() {
 
 
 </script>
-<div class="portBkg">
+<div id="Pag2" class="portBkg">
 <div class="cards-viewport">
   <div class="cards-wrapper" on:wheel={handleScroll} on:touchstart={handleTouchStart} on:touchmove={handleTouchMove} on:touchend={handleTouchEnd}
   on:touchstart={handleTouchStart}
