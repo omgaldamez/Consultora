@@ -57,20 +57,20 @@ function handleLinkClick(e) {
   <div class="hero">
     <!-- Agregar esqIzq en intro -->
     <div class="intro">
-        <h1 transition:fly={{ y: 50, duration: 2000, delay: 500 }}>
+        <h1 transition:fly={{ y: 50, duration: 1000, delay: 500 }}>
           {@html `<strong>Somos</strong>`}
         </h1>
-        <h1 transition:fly={{ y: 50, duration: 2000, delay: 2000 }}>
+        <h1 transition:fly={{ y: 50, duration: 1000, delay: 500 }}>
           {@html `<strong style="color: burlywood;">C</strong><strong>ynthia</strong> <strong>Herrera<br> </strong>y 
           <strong style="color: cornsilk;">O</strong><strong>mar</strong> <strong>Galdámez</strong>`}
         </h1>
         <h2
           class="h2Intro"
-          transition:fly={{ x: -200, duration: 2000, delay: 3500 }}
+          transition:fly={{ x: -200, duration: 1000, delay: 1500 }}
         >
-          Consultora en soluciones de visualización y análisis de datos
+          Consultores en soluciones de visualización y análisis de datos
         </h2>
-        <p class="lastLinkIntro" transition:fly={{ y: 50, duration: 2000, delay: 5500 }}>
+        <p class="lastLinkIntro" transition:fly={{ y: 50, duration: 1000, delay: 2500 }}>
           {@html `Transformamos <strong>datos</strong> complejos en <strong>visualizaciones</strong> con <strong>data storytelling</strong>`}
         </p>
     </div>
@@ -79,7 +79,9 @@ function handleLinkClick(e) {
         class="side"
       >
 
-      <a href="#Pag2" target="_top" on:click={handleLinkClick}>Portafolio</a>
+      <a href="#Pag2" target="_top" on:click={handleLinkClick}
+      transition:fly={{ y: 50, duration: 2000, delay: 3500 }}
+      >Portafolio</a>
 
 
       </div>
