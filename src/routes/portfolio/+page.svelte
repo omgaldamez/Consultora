@@ -224,7 +224,7 @@ a:hover{
     background-size: cover;
     border-radius: 35px;
     margin: 0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(230, 228, 228, 0.1);
     display: flex;
     overflow: hidden;
     flex-direction: column;
