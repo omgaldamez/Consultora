@@ -88,21 +88,20 @@
 
 <style>
 	a {
-		margin-bottom: 1rem;
+		margin: 1rem;
 		color: cornsilk;
 		text-decoration: none;
 		transition: opacity 0.3s;
 		padding-right: 50px;
 		font-size: 1.5vw;
-		margin: 8px 0;
 		cursor: pointer;
 		z-index: 2;
-		margin-left: 36px;
 	}
 
 	a:hover {
 		color: aliceblue;
-		text-decoration: aliceblue;
+		text-decoration: underline;
+    
 	}
 
 	.landBkg {
