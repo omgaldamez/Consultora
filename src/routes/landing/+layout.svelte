@@ -2,7 +2,6 @@
   import { page} from '$app/stores';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
-  import Menu from "./menu.svelte"
 
   let linkClicked = false;
   let transitionEnded = false;
@@ -19,7 +18,6 @@
 
 </script>
 
-<Menu />
 
 <main>
 <slot/>

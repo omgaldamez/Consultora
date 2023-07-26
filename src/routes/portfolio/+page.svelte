@@ -90,10 +90,8 @@ function handleTouchEnd() {
 
   
   } else {
-    // Vertical scroll (not needed for your current implementation)
   }
 }
-
 
 </script>
 <div id="Pag2" class="portBkg">

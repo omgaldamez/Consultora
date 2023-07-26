@@ -1,5 +1,5 @@
 <script>
-  import Landing from "./landing.svelte"
+  import Landing from "../routes/landing/+page.svelte"
   import Portfolio from "../routes/portfolio/+page.svelte"
 </script>
 
