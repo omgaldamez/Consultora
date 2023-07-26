@@ -280,7 +280,7 @@ margin-bottom: 36px;
     /* background-color: rgba(158, 74, 74, 0.2); */
     height: 60vh;
     max-height: 60vh;
-    width: 50vw;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
