@@ -25,6 +25,7 @@
     height: 100vh;
     overflow-x: hidden;
     overflow-y: visible;
+    margin: 0;
   }
 
 button{
@@ -45,9 +46,6 @@ h2{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: normal;
 }
-header {
-    margin: 24px;
-  }
 
 /* Set the width of the scrollbar */
 ::-webkit-scrollbar {

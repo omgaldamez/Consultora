@@ -26,29 +26,6 @@
 
 <style>
   /* CSS styles for the header, main, and footer */
-  main{
-    background-color: aliceblue;
-  }
 
-  :root {
-    background: linear-gradient(-60deg, #B05846, #e2725b, #B05846);
-    background-size: 400% 400%;
-    animation: gradient 20s ease infinite;
-    background-repeat: no-repeat;
-    margin: 0;
-  }
-  
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 
 </style>

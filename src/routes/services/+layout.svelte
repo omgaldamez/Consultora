@@ -1,7 +1,7 @@
 <script>
   import { page} from '$app/stores';
   import { onMount } from 'svelte';
-  import Menu from "./menu.svelte"
+  import { fade } from 'svelte/transition';
 
   let linkClicked = false;
   let transitionEnded = false;
@@ -14,28 +14,27 @@
   });
 
   console.log("PAGE DATA: ", $page.route.id);
-
-
 </script>
 
-<Menu />
 
-<main>
-<slot/>
+<main
+  class="global-gradient">
   
+  <slot></slot>
+  <!-- Move the SVG element inside the slotContent -->
 </main>
 
 <style>
   /* CSS styles for the header, main, and footer */
+
+
   main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    /* height: 100vh; */
   }
-
-
-
 
 </style>

@@ -338,13 +338,13 @@
 			/* background-color: rgba(255, 255, 255, 0.2); */
 			flex-direction: column;
 			text-align: center;
+			height: 50vh;
 		}
 		.intro {
 			/* background-color: rgba(158, 74, 74, 0.2); */
 			flex: 1;
-			height: 60vh;
 			width: 80vw;
-			max-height: 60vh;
+			height: 40vh;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -352,15 +352,22 @@
 			margin: 0;
 		}
 
+		.introContainer {
+		/* background-color: rgba(15, 124, 42, 0.2); */
+		height: 40vh;
+		width: 80vw;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+	}
+
+
 		.side {
 			/* background-color: rgba(15, 124, 42, 0.2); */
 			flex: 1;
-			height: 60vh;
+			height: 40vh;
 			width: 80vw;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: center;
 			border-top: 2px solid #375066;
 			border-left: 0px solid #375066;
 		}
