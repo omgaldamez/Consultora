@@ -19,6 +19,17 @@
     // Initial window size update
     updateWindowSize();
 
+    const cardsContainer = document.querySelector(".cards-wrapper");
+
+    cardsContainer.addEventListener('touchstart', (event) => {
+      scrollMobile();
+      handleTouchStart(event);
+    });
+
+    cardsContainer.addEventListener('touchmove', handleTouchMove);
+
+    cardsContainer.addEventListener('touchend', handleTouchEnd);
+
     // Add the event listener for window resize
     window.addEventListener("resize", updateWindowSize);
 
@@ -28,7 +39,68 @@
     };
   });
 
+  function scrollMobile() {
+    const slider = document.querySelector(".cards-wrapper");
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    function handleTouchStart(event) {
+      const touch = event.touches[0];
+      isDown = true;
+      slider.classList.add('active');
+      startX = touch.clientX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    }
+
+    function handleTouchMove(event) {
+      if (!isDown) return;
+      event.preventDefault();
+      const touch = event.touches[0];
+      const x = touch.clientX - slider.offsetLeft;
+      const walk = (x - startX) * 3; //scroll-fast
+      slider.scrollLeft = scrollLeft - walk;
+      console.log(walk);
+    }
+
+    function handleTouchEnd() {
+      isDown = false;
+      slider.classList.remove('active');
+    }
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 3; //scroll-fast
+      slider.scrollLeft = scrollLeft - walk;
+      console.log(walk);
+    });
+
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchmove', handleTouchMove);
+    slider.addEventListener('touchend', handleTouchEnd);
+  }
+
   let clickedCardIndex = null;
+
 
   function handleCardClick(index) {
     if (clickedCardIndex === index) {
@@ -105,9 +177,6 @@
     <div
       class="cards-wrapper"
       on:wheel={handleScroll}
-      on:touchstart={handleTouchStart}
-      on:touchmove={handleTouchMove}
-      on:touchend={handleTouchEnd}
       on:touchstart={handleTouchStart}
       on:touchmove={handleTouchMove}
       on:touchend={handleTouchEnd}
@@ -350,8 +419,7 @@
       padding-left: 3rem;
       padding-right: 3rem;
       gap: 1rem;
-      overflow-x: hidden; /* Enable horizontal scrolling */
-      overflow-y: hidden; /* Hide vertical scrollbar */
+      scroll-snap-type: x mandatory;
     }
 
     .content-container p {

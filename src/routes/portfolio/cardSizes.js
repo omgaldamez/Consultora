@@ -22,7 +22,7 @@
     console.log("WINDOW WIDTH: ", windowWidth);
     if (windowWidth <= desktopBreakpoint) {
       console.log("ES MENOR");
-      cardSizeBase = "width: 30vw; height: 40vh; opacity: 0.95";
+      cardSizeBase = "width: 60vw; height: 40vh; opacity: 0.95";
       cardSizeClicked = "width: 80vw; height: 50vh; opacity: 1";
     }
     if (windowWidth > desktopBreakpoint) {
