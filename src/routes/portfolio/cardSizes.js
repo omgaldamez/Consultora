@@ -4,9 +4,9 @@
 
   // Define your media breakpoints and corresponding card sizes
   export const desktopBreakpoint = 768;
-  export let cardSizeBase = "width: 20vw; height: 60vh; opacity: 0.95";
-  export let cardSizeHover = "width: 30vw; height: 70vh; opacity: 1";
-  export let cardSizeClicked = "width: 60vw; height: 70vh; opacity: 1";
+  export let cardSizeBase
+  export let cardSizeHover
+  export let cardSizeClicked
 
   export let contentBackgBase =
     "background-color: rgba(0, 0, 0, 0.4)"
@@ -22,13 +22,13 @@
     console.log("WINDOW WIDTH: ", windowWidth);
     if (windowWidth <= desktopBreakpoint) {
       console.log("ES MENOR");
-      cardSizeBase = "width: 30vw; height: 20vh; opacity: 0.95";
-      cardSizeClicked = "width: 80vw; height: 60vh; opacity: 1";
+      cardSizeBase = "width: 30vw; height: 40vh; opacity: 0.95";
+      cardSizeClicked = "width: 80vw; height: 50vh; opacity: 1";
     }
     if (windowWidth > desktopBreakpoint) {
       console.log("ES MAYOR");
-      cardSizeBase = "width: 20vw; height: 60vh; opacity: 0.95";
-  cardSizeHover = "width: 30vw; height: 70vh; opacity: 1";
+      cardSizeBase = "width: 30vw; height: 60vh; opacity: 0.95";
+  cardSizeHover = "width: 40vw; height: 70vh; opacity: 1";
   cardSizeClicked = "width: 60vw; height: 70vh; opacity: 1";
     }
   };

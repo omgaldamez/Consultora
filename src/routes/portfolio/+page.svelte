@@ -1,11 +1,18 @@
 <script>
   import cartas from "./cardsContent.json";
   import { onMount } from "svelte";
-  import {  cardSizeBase, cardSizeHover, cardSizeClicked, contentBackgBase, contentBackgHover, contentBackgClicked, updateWindowSize } from "./cardSizes.js"
+  import {
+    cardSizeBase,
+    cardSizeHover,
+    cardSizeClicked,
+    contentBackgBase,
+    contentBackgHover,
+    contentBackgClicked,
+    updateWindowSize,
+  } from "./cardSizes.js";
 
   let numCards = cartas.data;
   console.log("numCards: ", numCards);
-
 
   // Add the resize event listener when the component is mounted
   onMount(() => {
@@ -27,6 +34,8 @@
     if (clickedCardIndex === index) {
       // If the clicked card is already expanded, set clickedCardIndex back to null
       clickedCardIndex = null;
+      // Reset the card size back to cardSizeBase values after being clicked
+      updateWindowSize();
     } else {
       // Otherwise, set clickedCardIndex to the index of the clicked card
       clickedCardIndex = index;
@@ -58,68 +67,71 @@
     }
   }
 
-
   let touchStartX = 0;
-let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
 
-function handleTouchStart(event) {
-  const touch = event.touches[0];
-  touchStartX = touch.clientX;
-  touchStartY = touch.clientY;
-}
-
-function handleTouchMove(event) {
-  event.preventDefault();
-  const touch = event.touches[0];
-  touchEndX = touch.clientX;
-  touchEndY = touch.clientY;
-}
-
-function handleTouchEnd() {
-  const deltaX = touchEndX - touchStartX;
-  const deltaY = touchEndY - touchStartY;
-  const threshold = 50; // Adjust this threshold value as needed
-
-  // Check if the touch movement is more horizontal or vertical
-  if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    // Horizontal scroll
-    const cardsContainer = document.querySelector(".cards-wrapper");
-    cardsContainer.scrollLeft += deltaX;
-
-  
-  } else {
+  function handleTouchStart(event) {
+    const touch = event.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
   }
-}
 
+  function handleTouchMove(event) {
+    event.preventDefault();
+    const touch = event.touches[0];
+    touchEndX = touch.clientX;
+    touchEndY = touch.clientY;
+  }
+
+  function handleTouchEnd() {
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const threshold = 50; // Adjust this threshold value as needed
+
+    // Check if the touch movement is more horizontal or vertical
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Horizontal scroll
+      const cardsContainer = document.querySelector(".cards-wrapper");
+      cardsContainer.scrollLeft += deltaX;
+    } else {
+    }
+  }
 </script>
+
 <div id="Pag2" class="portBkg">
-<div class="cards-viewport">
-  <div class="cards-wrapper" on:wheel={handleScroll} on:touchstart={handleTouchStart} on:touchmove={handleTouchMove} on:touchend={handleTouchEnd}
-  on:touchstart={handleTouchStart}
-  on:touchmove={handleTouchMove}
-  on:touchend={handleTouchEnd}>
-    {#each numCards as card, index}
+  <div class="cards-viewport">
+    <div
+      class="cards-wrapper"
+      on:wheel={handleScroll}
+      on:touchstart={handleTouchStart}
+      on:touchmove={handleTouchMove}
+      on:touchend={handleTouchEnd}
+      on:touchstart={handleTouchStart}
+      on:touchmove={handleTouchMove}
+      on:touchend={handleTouchEnd}
+    >
+      {#each numCards as card, index}
       <div
-        class="cards-container"
-        role="button"
-        tabindex="0"
-        on:click={() => handleCardClick(index)}
-        on:mouseenter={() => handleCardMouseEnter(index)}
-        on:mouseleave={() => handleCardMouseLeave(index)}
-        on:keydown={(event) => handleCardKeyDown(event, index)}
-        style={`${
-          clickedCardIndex === index
-            ? `${cardSizeClicked}`
-            : hoveredCardIndex === index
-            ? `${cardSizeHover}`
-            : `${cardSizeBase}`
-        }`}
-      >
-        <div
-          class="card"
-          style={`background-image: url(${card.Image});
+      class="cards-container"
+      role="button"
+      tabindex="0"
+      on:click={() => handleCardClick(index)}
+      on:mouseenter={() => handleCardMouseEnter(index)}
+      on:mouseleave={() => handleCardMouseLeave(index)}
+      on:keydown={(event) => handleCardKeyDown(event, index)}
+      style={`${
+        clickedCardIndex === index
+          ? `${cardSizeClicked}`
+          : hoveredCardIndex === index
+          ? `${cardSizeHover}`
+          : `${cardSizeBase}`
+      }`}
+    >
+          <div
+            class="card"
+            style={`background-image: url(${card.Image});
           background-position: center;
           background-size: cover;
             ${
@@ -129,58 +141,58 @@ function handleTouchEnd() {
                 ? `${cardSizeHover}`
                 : `${cardSizeBase}`
             }`}
-        >
-          <div class="content-container"
-          role="button"
-          tabindex="0"
-          on:click={() => handleCardClick(index)}
-          on:mouseenter={() => handleCardMouseEnter(index)}
-          on:mouseleave={() => handleCardMouseLeave(index)}
-          on:keydown={(event) => handleCardKeyDown(event, index)}
-          style={`${
-            clickedCardIndex === index
-              ? `${contentBackgClicked}`
-              : hoveredCardIndex === index
-              ? `${contentBackgHover}`
-              : `${contentBackgBase}`
-          }`}>
-            <a href="{card.Link}" target="_blank">
-              <h2>{card.Title}</h2>
-            </a>
+          >
+            <div
+              class="content-container"
+              role="button"
+              tabindex="0"
+              on:click={() => handleCardClick(index)}
+              on:mouseenter={() => handleCardMouseEnter(index)}
+              on:mouseleave={() => handleCardMouseLeave(index)}
+              on:keydown={(event) => handleCardKeyDown(event, index)}
+              style={`${
+                clickedCardIndex === index
+                  ? `${contentBackgClicked}`
+                  : hoveredCardIndex === index
+                  ? `${contentBackgHover}`
+                  : `${contentBackgBase}`
+              }`}
+            >
+              <a href={card.Link} target="_blank">
+                <h2>{card.Title}</h2>
+              </a>
               <h3>{card.Content}</h3>
               <p class={clickedCardIndex === index ? "expanded" : ""}>
                 {card.About}
               </p>
+            </div>
           </div>
         </div>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
-</div>
 </div>
 
 <style>
-
-.portBkg{
+  .portBkg {
     background-color: rgb(31, 31, 31);
     margin: 0;
     position: relative;
     width: 100vw;
-}
+  }
 
-
-a{
-  position: relative;
-  z-index: 50000;
-  display: flex;
-  width: 20vw;
-  text-decoration: none;
+  a {
+    position: relative;
+    z-index: 50000;
+    display: flex;
+    width: 20vw;
+    text-decoration: none;
     cursor: pointer;
-}
+  }
 
-a:hover{
-  text-decoration: underline;
-}
+  a:hover {
+    text-decoration: underline;
+  }
 
   .cards-viewport {
     overflow: hidden;
@@ -206,7 +218,6 @@ a:hover{
     overflow-y: hidden; /* Hide vertical scrollbar */
   }
 
-
   .cards-container {
     display: flex;
     transition: width 2s ease, height 2s ease; /* Add transition for width and height changes */
@@ -216,6 +227,7 @@ a:hover{
 
   .card {
     width: 30vw;
+    height: 60vh;
     background-color: rgba(0, 0, 0, 0.1);
     background-size: cover;
     border-radius: 35px;
@@ -263,19 +275,16 @@ a:hover{
     flex-wrap: nowrap;
   }
 
-
   .content-container h2 {
-    margin:0 24px;
-
+    margin: 0 24px;
   }
 
   .content-container h3 {
-    margin-left:24px;
-
+    margin-left: 24px;
   }
 
   .content-container p {
-    margin:0 24px;
+    margin: 0 24px;
     visibility: hidden;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -314,6 +323,12 @@ a:hover{
 
   /* Responsive styles for mobile */
   @media (max-width: 640px) {
+
+    .card{
+    width: 30vw;
+    height: 40vh;
+    }
+
     .cards-viewport {
       height: 100vh; /* Adjust height as needed */
       justify-content: flex-start;
@@ -326,18 +341,18 @@ a:hover{
       padding: 0;
       gap: 0.5rem;
       align-items: center;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 90vw;
-    height: 70vh;
-    border-radius: 8px;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    gap: 1rem;
-    overflow-x: hidden; /* Enable horizontal scrolling */
-    overflow-y: hidden; /* Hide vertical scrollbar */
-  }
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 90vw;
+      height: 70vh;
+      border-radius: 8px;
+      padding-left: 3rem;
+      padding-right: 3rem;
+      gap: 1rem;
+      overflow-x: hidden; /* Enable horizontal scrolling */
+      overflow-y: hidden; /* Hide vertical scrollbar */
+    }
 
     .content-container p {
       /* Adjust max-height for mobile */
