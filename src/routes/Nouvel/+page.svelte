@@ -121,19 +121,5 @@
 
 <style>
   /* Add any custom styles here */
-  .link {
-    fill: none;
-    stroke: #ccc;
-    stroke-width: 1.5px;
-  }
 
-  .node {
-    fill: white;
-    stroke: steelblue;
-    stroke-width: 1.5px;
-  }
-
-  .label {
-    font-size: 12px;
-  }
 </style>

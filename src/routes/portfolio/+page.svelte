@@ -199,8 +199,6 @@ a:hover{
     width: 90vw;
     height: 70vh;
     border-radius: 8px;
-    /* Removed height: 80vh; */
-    /* Removed scrollbar-width: none; */
     padding-left: 3rem;
     padding-right: 3rem;
     gap: 1rem;
@@ -328,7 +326,18 @@ a:hover{
       padding: 0;
       gap: 0.5rem;
       align-items: center;
-    }
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90vw;
+    height: 70vh;
+    border-radius: 8px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    gap: 1rem;
+    overflow-x: hidden; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical scrollbar */
+  }
 
     .content-container p {
       /* Adjust max-height for mobile */
