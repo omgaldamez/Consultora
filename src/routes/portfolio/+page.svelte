@@ -19,17 +19,6 @@
     // Initial window size update
     updateWindowSize();
 
-    const cardsContainer = document.querySelector(".cards-wrapper");
-
-    cardsContainer.addEventListener("touchstart", (event) => {
-      scrollMobile();
-      handleTouchStart(event);
-    });
-
-    cardsContainer.addEventListener("touchmove", handleTouchMove);
-
-    cardsContainer.addEventListener("touchend", handleTouchEnd);
-
     // Add the event listener for window resize
     window.addEventListener("resize", updateWindowSize);
 
@@ -38,98 +27,6 @@
       window.removeEventListener("resize", updateWindowSize);
     };
   });
-
-  function scrollMobile() {
-    const slider = document.querySelector(".cards-wrapper");
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    let isScrolling = false;
-    let stopScrollTimeout;
-
-    function handleTouchStart(event) {
-      const touch = event.touches[0];
-      isDown = true;
-      slider.classList.add("active");
-      startX = touch.clientX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    }
-
-    function handleTouchMove(event) {
-      if (!isDown) return;
-      event.preventDefault();
-      const touch = event.touches[0];
-      const x = touch.clientX - slider.offsetLeft;
-      const walk = (x - startX) * 3; //scroll-fast
-      slider.scrollLeft = scrollLeft - walk;
-      console.log(walk);
-
-      // Set isScrolling to true to indicate that the cards are currently scrolling
-      isScrolling = true;
-
-      // If the stopScrollTimeout is set, clear the timeout to reset it
-      if (stopScrollTimeout) {
-        clearTimeout(stopScrollTimeout);
-      }
-
-      // Call the stopScrolling function after 1 second (1000 ms) to stop scrolling
-      stopScrollTimeout = setTimeout(() => {
-        stopScrolling();
-      }, 200);
-    }
-
-    function handleTouchEnd() {
-      isDown = false;
-      slider.classList.remove("active");
-
-      // If isScrolling is true, call the stopScrolling function
-      if (isScrolling) {
-        stopScrolling();
-      }
-    }
-
-    function stopScrolling() {
-      isScrolling = false;
-      // Add your custom logic here to stop the scrolling effect
-      // For example, you can set the scrollLeft position to a specific value to snap the cards to a certain position
-      // In this example, I'll just set it to the nearest card position for demonstration purposes
-      const cardsContainer = document.querySelector(".cards-wrapper");
-      const cardWidth = cardsContainer.querySelector(".cards-container").offsetWidth;
-      const scrollLeft = cardsContainer.scrollLeft;
-      const targetCardIndex = Math.round(scrollLeft / cardWidth);
-      cardsContainer.scrollLeft = targetCardIndex * cardWidth;
-    }
-
-    slider.addEventListener("mousedown", (e) => {
-      isDown = true;
-      slider.classList.add("active");
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener("mouseleave", () => {
-      isDown = false;
-      slider.classList.remove("active");
-    });
-
-    slider.addEventListener("mouseup", () => {
-      isDown = false;
-      slider.classList.remove("active");
-    });
-
-    slider.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 3; //scroll-fast
-      slider.scrollLeft = scrollLeft - walk;
-      console.log(walk);
-    });
-
-    slider.addEventListener("touchstart", handleTouchStart);
-    slider.addEventListener("touchmove", handleTouchMove);
-    slider.addEventListener("touchend", handleTouchEnd);
-  }
 
   let clickedCardIndex = null;
 
@@ -170,38 +67,42 @@
     }
   }
 
+  // Implement touch-based drag and drop behavior for mobile
   let touchStartX = 0;
   let touchStartY = 0;
-  let touchEndX = 0;
-  let touchEndY = 0;
+  let scrollLeftOnTouchStart = 0;
+  let isDragging = false;
 
   function handleTouchStart(event) {
     const touch = event.touches[0];
     touchStartX = touch.clientX;
     touchStartY = touch.clientY;
+    scrollLeftOnTouchStart = event.currentTarget.scrollLeft;
+    isDragging = true;
   }
+
+  
 
   function handleTouchMove(event) {
     event.preventDefault();
+    if (!isDragging) return;
+
     const touch = event.touches[0];
-    touchEndX = touch.clientX;
-    touchEndY = touch.clientY;
+    const touchMoveX = touch.clientX;
+    const touchMoveY = touch.clientY;
+    const deltaX = touchMoveX - touchStartX;
+    const deltaY = touchMoveY - touchStartY;
+    const scrollContainer = event.currentTarget;
+
+    // Determine if the touch movement is more horizontal or vertical
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Horizontal scroll
+      scrollContainer.scrollLeft = scrollLeftOnTouchStart - deltaX;
+    }
   }
 
   function handleTouchEnd() {
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
-    const threshold = 50; // Adjust this threshold value as needed
-
-    // Check if the touch movement is more horizontal or vertical
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      // Horizontal scroll
-      const cardsContainer = document.querySelector(".cards-wrapper");
-      cardsContainer.scrollLeft += deltaX;
-    } else {
-      // Vertical scroll, perform drag and drop
-      // Add your custom drag and drop logic here
-    }
+    isDragging = false;
   }
 </script>
 
