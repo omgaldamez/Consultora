@@ -136,7 +136,7 @@
       }`}
     >
           <div
-            class="card"
+            class="card {clickedCardIndex === index ? "expanded" : ""}"
             style={`background-image: url(${card.Image});
           background-position: center;
           background-size: cover;
@@ -165,7 +165,7 @@
               }`}
             >
               <a href={card.Link} target="_blank">
-                <h2>{card.Title}</h2>
+                <h2 class={clickedCardIndex === index ? "expanded" : ""}>{card.Title}</h2>
               </a>
               <h3>{card.Content}</h3>
               <p class={clickedCardIndex === index ? "expanded" : ""}>
@@ -235,7 +235,7 @@
 
   .cards-container {
     display: flex;
-    transition: width 2s ease, height 2s ease; /* Add transition for width and height changes */
+    transition: width 1.5s ease, height 1.5s ease, opacity 1s ease; /* Add transition for width and height changes */
     overflow-x: visible;
     /* Removed transition: transform 0.2s ease; */
   }
@@ -243,7 +243,7 @@
   .card {
     width: 30vw;
     height: 60vh;
-    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
     background-size: cover;
     border-radius: 35px;
     margin: 0;
@@ -252,9 +252,18 @@
     overflow: hidden;
     flex-direction: column;
     justify-content: flex-end;
-    transition: width 2s ease, height 2s ease; /* Add transition for width and height changes */
+    transition: width 1.5s ease, height 1.5s ease, opacity 1s ease; /* Add transition for width and height changes */
     position: relative; /* Add position relative to the .card element */
   }
+
+  .card:hover{
+    cursor: pointer;
+  }
+
+  .card.expanded {
+    cursor: default;
+  }
+
 
   /* Add the pseudo-element to create the background overlay */
   .card::before {
@@ -281,7 +290,7 @@
   .content-container {
     max-height: 25%;
     position: relative;
-    padding: 1rem 0;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -292,6 +301,38 @@
 
   .content-container h2 {
     margin: 0 24px;
+    transition: font-size 1.5s ease;
+  }
+
+
+  .content-container h2:hover {
+    font-size: 36px;
+    transition: font-size 1.5s ease;
+    text-decoration: underline;
+    text-decoration-color: aliceblue;
+  }
+
+  .content-container h2.expanded {
+    font-size: 36px;
+    transition: font-size 1.5s ease;
+    text-decoration: underline;
+    text-decoration-color: aliceblue;
+    white-space: nowrap;
+
+  }
+
+  .content-container h2.expanded:hover {
+    font-size: 36px;
+    transition: font-size 1.5s ease;
+    text-decoration: underline;
+    text-decoration-color: aliceblue;
+  }
+
+  .content-container:hover h2:not(.expanded) {
+    font-size: 36px;
+    transition: font-size 1.5s ease;
+    text-decoration: underline;
+    text-decoration-color: aliceblue;
   }
 
   .content-container h3 {
@@ -314,6 +355,7 @@
     text-overflow: ellipsis;
     overflow-wrap: break-word;
     max-height: 6em;
+    opacity: 1;
     transition: max-height 2s ease, opacity 2s ease;
   }
 
@@ -321,7 +363,6 @@
     visibility: visible;
     height: auto;
     max-height: 18em;
-    width: 100%;
     opacity: 1;
     transition: max-height 2s ease, opacity 2s ease;
     white-space: normal;
@@ -409,7 +450,7 @@
   .content-container {
     max-height: 40%;
     position: relative;
-    padding: 1rem 0;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

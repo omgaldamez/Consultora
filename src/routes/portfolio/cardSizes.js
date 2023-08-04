@@ -27,8 +27,8 @@
     }
     if (windowWidth > desktopBreakpoint) {
       console.log("ES MAYOR");
-      cardSizeBase = "width: 30vw; height: 60vh; opacity: 0.95";
-  cardSizeHover = "width: 40vw; height: 70vh; opacity: 1";
+      cardSizeBase = "width: 30vw; height: 60vh; opacity: 0.9";
+  cardSizeHover = "width: 40vw; height: 70vh; opacity: 0.95";
   cardSizeClicked = "width: 60vw; height: 70vh; opacity: 1";
     }
   };
