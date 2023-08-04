@@ -340,7 +340,7 @@
   @media (max-width: 640px) {
 
     .card{
-    width: 30vw;
+    width: 60vw;
     height: 40vh;
     }
 
