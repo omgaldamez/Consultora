@@ -105,9 +105,12 @@
     isDragging = false;
   }
 </script>
-
 <div id="Pag2" class="portBkg">
+  <header>
+    <h1>Portafolio</h1>
+    </header>
   <div class="cards-viewport">
+    
     <div
       class="cards-wrapper"
       on:wheel={handleScroll}
@@ -177,6 +180,15 @@
 </div>
 
 <style>
+  header{
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 80vw;
+  position: absolute;
+  margin: 0 10vw;
+}
   .portBkg {
     background-color: rgb(31, 31, 31);
     margin: 0;
@@ -370,5 +382,41 @@
       /* Adjust max-height for mobile */
       max-height: 12em; /* Adjust max-height for mobile */
     }
+
+    .content-container h2 {
+    margin: 0 24px;
+    max-height: 6em;
+    font-size: 1.5rem;
+  }
+
+  .content-container h3 {
+    margin: 0 24px;
+    max-height: 6em;
+  }
+
+  .content-container p {
+    margin: 0 24px;
+    visibility: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-height: 6em;
+    opacity: 0;
+    transition: max-height 2s ease, opacity 2s ease;
+    position: relative;
+  }
+
+  .content-container {
+    max-height: 40%;
+    position: relative;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+    flex: 1;
+    flex-wrap: nowrap;
+  }
+
   }
 </style>
