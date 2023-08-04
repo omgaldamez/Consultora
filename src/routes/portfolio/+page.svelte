@@ -167,7 +167,7 @@
               <a href={card.Link} target="_blank">
                 <h2 class={clickedCardIndex === index ? "expanded" : ""}>{card.Title}</h2>
               </a>
-              <h3>{card.Content}</h3>
+              <h3 class={clickedCardIndex === index ? "expanded" : ""}>{card.Content}</h3>
               <p class={clickedCardIndex === index ? "expanded" : ""}>
                 {card.About}
               </p>
@@ -380,6 +380,10 @@
   /* Responsive styles for mobile */
   @media (max-width: 640px) {
 
+a{
+  width: auto;
+}
+
     .card{
     width: 60vw;
     height: 40vh;
@@ -409,30 +413,65 @@
       scroll-snap-type: x mandatory;
     }
 
+    .content-container {
+    max-height: 45%;
+    position: relative;
+    padding: 1rem 0;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    flex: 1;
+  }
+
+  .content-container h2 {
+    margin: 0 24px;
+    font-size: 1.5rem;
+    transition: font-size 1.5s ease;
+    white-space: normal;
+  }
+
+
+  .content-container h2.expanded {
+    font-size: 1.7rem;
+    transition: font-size 1.5s ease;
+    white-space: normal;
+
+  }
+
+
+  .content-container:hover h2:not(.expanded) {
+    font-size: 1.7rem;
+    transition: font-size 1.5s ease;
+  }
+
     .content-container p {
       /* Adjust max-height for mobile */
       max-height: 4em; /* Adjust max-height for mobile */
-    }
-
-    .content-container:hover p:hover {
-      /* Adjust max-height for mobile */
-      max-height: 4em; /* Adjust max-height for mobile */
+      opacity: 0;
+    transition: max-height 2s ease, opacity 2s ease;;
     }
 
     .content-container p.expanded {
       /* Adjust max-height for mobile */
       max-height: 12em; /* Adjust max-height for mobile */
+      opacity: 1;
+    transition: max-height 2s ease, opacity 2s ease;;
     }
 
-    .content-container h2 {
-    margin: 0 24px;
-    max-height: 6em;
-    font-size: 1.5rem;
-  }
 
   .content-container h3 {
     margin: 0 24px;
-    max-height: 6em;
+    font-size: 1rem;
+  }
+
+  .content-container h3.expanded{
+max-height:0;
+visibility: collapse;
+opacity: 0;
+    transition: visibility 1.5 ease, opacity 1.5 ease, max-height 1.5s ease;
+
   }
 
   .content-container p {
@@ -447,17 +486,6 @@
     position: relative;
   }
 
-  .content-container {
-    max-height: 40%;
-    position: relative;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: left;
-    flex: 1;
-    flex-wrap: nowrap;
-  }
 
   }
 </style>
