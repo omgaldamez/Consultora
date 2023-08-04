@@ -11,6 +11,13 @@
     updateWindowSize,
   } from "./cardSizes.js";
 
+  import {
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+  } from "./handlers.js";
+
+  let clickedCardIndex = null;
   let numCards = cartas.data;
   console.log("numCards: ", numCards);
 
@@ -28,135 +35,59 @@
     };
   });
 
-  let clickedCardIndex = null;
-
   function handleCardClick(index) {
+    // If the clicked card is already expanded, set clickedCardIndex back to null
+    // Otherwise, set clickedCardIndex to the index of the clicked card
     if (clickedCardIndex === index) {
-      // If the clicked card is already expanded, set clickedCardIndex back to null
-      clickedCardIndex = null;
-      // Reset the card size back to cardSizeBase values after being clicked
-      updateWindowSize();
+        clickedCardIndex = null;
+        // Reset the card size back to cardSizeBase values after being clicked
+        updateWindowSize();
     } else {
-      // Otherwise, set clickedCardIndex to the index of the clicked card
-      clickedCardIndex = index;
+        clickedCardIndex = index;
     }
-  }
+}
 
-  function handleCardKeyDown(event, index) {
+
+// Function to handle key down event for card
+function handleCardKeyDown(event, index) {
+    // Trigger the same action as a click when Enter or Space is pressed
     if (event.key === "Enter" || event.key === " ") {
-      // Trigger the same action as a click when Enter or Space is pressed
-      handleCardClick(index);
+        handleCardClick(index);
     }
-  }
+}
 
-  function handleScroll(event) {
+
+let hoveredCardIndex = null;
+// Function to handle card click event
+
+
+// Function to handle scroll event
+function handleScroll(event) {
     const cardsContainer = document.querySelector(".cards-wrapper");
     cardsContainer.scrollLeft += event.deltaY; // Horizontal scrolling based on Y-axis mouse wheel
     event.preventDefault();
-  }
+}
 
-  let hoveredCardIndex = null;
-
-  function handleCardMouseEnter(index) {
+// Function to handle card mouse enter event
+function handleCardMouseEnter(index) {
     hoveredCardIndex = index;
-  }
+}
 
-  function handleCardMouseLeave(index) {
+// Function to handle card mouse leave event
+function handleCardMouseLeave(index) {
+    // If the clicked card is not the same as the hovered card, set hoveredCardIndex to null
     if (clickedCardIndex !== index) {
-      hoveredCardIndex = null;
+        hoveredCardIndex = null;
     }
-  }
+}
 
-  // Implement touch-based drag and drop behavior for mobile
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let isDragging = false;
-let isClick = false; // Add this flag
-  let touchMoveTimer = null;
-  let inertiaFrames = 20;
-  let deltaXArray = [];
-
-  function handleTouchStart(event) {
-    const touch = event.touches[0];
-    touchStartX = touch.clientX;
-    touchStartY = touch.clientY;
-    isDragging = true;
-  isClick = true; // Initialize the isClick flag to true
-    deltaXArray = [];
-    // Clear the touchMoveTimer if it's set to stop scrolling after touch ends
-    clearTimeout(touchMoveTimer);
-  }
-
-  function handleTouchMove(event) {
-    event.preventDefault();
-    if (!isDragging) return;
-
-    const touch = event.touches[0];
-    const touchMoveX = touch.clientX;
-    const touchMoveY = touch.clientY;
-    const deltaX = touchMoveX - touchStartX;
-    const deltaY = touchMoveY - touchStartY;
-    const scrollContainer = event.currentTarget;
-
-    // Determine if the touch movement is more horizontal or vertical
-    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    event.preventDefault();
-    isClick = false; // If the touch movement is more horizontal, consider it a drag, not a click
-  } else {
-    scrollContainer.scrollLeft = scrollLeftOnTouchStart - deltaX; // Use scrollLeft here
-  }
-
-      // Store the delta X value for calculating the average velocity
-      if (deltaXArray.length >= inertiaFrames) {
-        deltaXArray.shift();
-      }
-      deltaXArray.push(deltaX);
-    }
-  
-
-  function handleTouchEnd() {
-    isDragging = false;
-    // Calculate the average velocity of the swipe
-    const avgDeltaX =
-      deltaXArray.reduce((acc, curr) => acc + curr, 0) / deltaXArray.length;
-    // Calculate the distance to scroll for the inertia effect
-    const inertiaScrollDistance = avgDeltaX * 3;
-    // Add a timer to apply the inertia effect for a few frames
-    let frameCount = 0;
-
-    if (isClick) {
-    // If it's a click, reset the isClick flag to false and return early to avoid the inertia scroll animation
-    isClick = false;
-    return;
-  }
-
-    function inertiaScrollAnimation() {
-      if (frameCount < inertiaFrames) {
-        const cardsContainer = document.querySelector(".cards-wrapper");
-        cardsContainer.scrollLeft -= inertiaScrollDistance / inertiaFrames;
-        frameCount++;
-        requestAnimationFrame(inertiaScrollAnimation);
-      }
-    }
-
-    requestAnimationFrame(inertiaScrollAnimation);
-
-    // Set a timer to stop scrolling after 1 second of touch end
-    touchMoveTimer = setTimeout(() => {
-      clearTimeout(touchMoveTimer);
-      touchMoveTimer = null;
-    }, 100);
-  }
 </script>
-
-
 
 <div id="Pag2" class="portBkg">
   <header>
     <h1>Portafolio</h1>
-    </header>
+  </header>
   <div class="cards-viewport">
-    
     <div
       class="cards-wrapper"
       on:wheel={handleScroll}
@@ -165,24 +96,24 @@ let isClick = false; // Add this flag
       on:touchend={handleTouchEnd}
     >
       {#each numCards as card, index}
-      <div
-      class="cards-container"
-      role="button"
-      tabindex="0"
-      on:click={() => handleCardClick(index)}
-      on:mouseenter={() => handleCardMouseEnter(index)}
-      on:mouseleave={() => handleCardMouseLeave(index)}
-      on:keydown={(event) => handleCardKeyDown(event, index)}
-      style={`${
-        clickedCardIndex === index
-          ? `${cardSizeClicked}`
-          : hoveredCardIndex === index
-          ? `${cardSizeHover}`
-          : `${cardSizeBase}`
-      }`}
-    >
+        <div
+          class="cards-container"
+          role="button"
+          tabindex="0"
+          on:click={() => handleCardClick(index)}
+          on:mouseenter={() => handleCardMouseEnter(index)}
+          on:mouseleave={() => handleCardMouseLeave(index)}
+          on:keydown={(event) => handleCardKeyDown(event, index)}
+          style={`${
+            clickedCardIndex === index
+              ? `${cardSizeClicked}`
+              : hoveredCardIndex === index
+              ? `${cardSizeHover}`
+              : `${cardSizeBase}`
+          }`}
+        >
           <div
-            class="card {clickedCardIndex === index ? "expanded" : ""}"
+            class="card {clickedCardIndex === index ? 'expanded' : ''}"
             style={`background-image: url(${card.Image});
           background-position: center;
           background-size: cover;
@@ -211,9 +142,13 @@ let isClick = false; // Add this flag
               }`}
             >
               <a href={card.Link} target="_blank">
-                <h2 class={clickedCardIndex === index ? "expanded" : ""}>{card.Title}</h2>
+                <h2 class={clickedCardIndex === index ? "expanded" : ""}>
+                  {card.Title}
+                </h2>
               </a>
-              <h3 class={clickedCardIndex === index ? "expanded" : ""}>{card.Content}</h3>
+              <h3 class={clickedCardIndex === index ? "expanded" : ""}>
+                {card.Content}
+              </h3>
               <p class={clickedCardIndex === index ? "expanded" : ""}>
                 {card.About}
               </p>
@@ -322,7 +257,12 @@ let isClick = false; // Add this flag
     width: 100%;
     height: 100%;
     opacity: 0.5; /* Set initial opacity to 0 */
-    background-color: rgba(0, 0, 0, 0.3); /* Adjust the background color on hover as needed */
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.3
+    ); /* Adjust the background color on hover as needed */
     transition: opacity 0.5s ease; /* Add transition for opacity changes */
   }
 
