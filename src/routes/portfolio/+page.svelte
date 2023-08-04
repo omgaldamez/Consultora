@@ -70,8 +70,8 @@
   // Implement touch-based drag and drop behavior for mobile
   let touchStartX = 0;
   let touchStartY = 0;
-  let scrollLeftOnTouchStart = 0;
   let isDragging = false;
+let isClick = false; // Add this flag
   let touchMoveTimer = null;
   let inertiaFrames = 20;
   let deltaXArray = [];
@@ -80,8 +80,8 @@
     const touch = event.touches[0];
     touchStartX = touch.clientX;
     touchStartY = touch.clientY;
-    scrollLeftOnTouchStart = event.currentTarget.scrollLeft;
     isDragging = true;
+  isClick = true; // Initialize the isClick flag to true
     deltaXArray = [];
     // Clear the touchMoveTimer if it's set to stop scrolling after touch ends
     clearTimeout(touchMoveTimer);
@@ -100,8 +100,11 @@
 
     // Determine if the touch movement is more horizontal or vertical
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      // Horizontal scroll
-      scrollContainer.scrollLeft = scrollLeftOnTouchStart - deltaX;
+    event.preventDefault();
+    isClick = false; // If the touch movement is more horizontal, consider it a drag, not a click
+  } else {
+    scrollContainer.scrollLeft = scrollLeftOnTouchStart - deltaX; // Use scrollLeft here
+  }
 
       // Store the delta X value for calculating the average velocity
       if (deltaXArray.length >= inertiaFrames) {
@@ -109,7 +112,7 @@
       }
       deltaXArray.push(deltaX);
     }
-  }
+  
 
   function handleTouchEnd() {
     isDragging = false;
@@ -120,6 +123,12 @@
     const inertiaScrollDistance = avgDeltaX * 8;
     // Add a timer to apply the inertia effect for a few frames
     let frameCount = 0;
+
+    if (isClick) {
+    // If it's a click, reset the isClick flag to false and return early to avoid the inertia scroll animation
+    isClick = false;
+    return;
+  }
 
     function inertiaScrollAnimation() {
       if (frameCount < inertiaFrames) {
