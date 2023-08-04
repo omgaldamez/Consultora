@@ -120,7 +120,7 @@ let isClick = false; // Add this flag
     const avgDeltaX =
       deltaXArray.reduce((acc, curr) => acc + curr, 0) / deltaXArray.length;
     // Calculate the distance to scroll for the inertia effect
-    const inertiaScrollDistance = avgDeltaX * 8;
+    const inertiaScrollDistance = avgDeltaX * 3;
     // Add a timer to apply the inertia effect for a few frames
     let frameCount = 0;
 
@@ -145,7 +145,7 @@ let isClick = false; // Add this flag
     touchMoveTimer = setTimeout(() => {
       clearTimeout(touchMoveTimer);
       touchMoveTimer = null;
-    }, 1000);
+    }, 100);
   }
 </script>
 
