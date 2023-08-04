@@ -72,6 +72,9 @@
   let touchStartY = 0;
   let scrollLeftOnTouchStart = 0;
   let isDragging = false;
+  let touchMoveTimer = null;
+  let inertiaFrames = 20;
+  let deltaXArray = [];
 
   function handleTouchStart(event) {
     const touch = event.touches[0];
@@ -79,9 +82,10 @@
     touchStartY = touch.clientY;
     scrollLeftOnTouchStart = event.currentTarget.scrollLeft;
     isDragging = true;
+    deltaXArray = [];
+    // Clear the touchMoveTimer if it's set to stop scrolling after touch ends
+    clearTimeout(touchMoveTimer);
   }
-
-  
 
   function handleTouchMove(event) {
     event.preventDefault();
@@ -98,13 +102,46 @@
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
       // Horizontal scroll
       scrollContainer.scrollLeft = scrollLeftOnTouchStart - deltaX;
+
+      // Store the delta X value for calculating the average velocity
+      if (deltaXArray.length >= inertiaFrames) {
+        deltaXArray.shift();
+      }
+      deltaXArray.push(deltaX);
     }
   }
 
   function handleTouchEnd() {
     isDragging = false;
+    // Calculate the average velocity of the swipe
+    const avgDeltaX =
+      deltaXArray.reduce((acc, curr) => acc + curr, 0) / deltaXArray.length;
+    // Calculate the distance to scroll for the inertia effect
+    const inertiaScrollDistance = avgDeltaX * 8;
+    // Add a timer to apply the inertia effect for a few frames
+    let frameCount = 0;
+
+    function inertiaScrollAnimation() {
+      if (frameCount < inertiaFrames) {
+        const cardsContainer = document.querySelector(".cards-wrapper");
+        cardsContainer.scrollLeft -= inertiaScrollDistance / inertiaFrames;
+        frameCount++;
+        requestAnimationFrame(inertiaScrollAnimation);
+      }
+    }
+
+    requestAnimationFrame(inertiaScrollAnimation);
+
+    // Set a timer to stop scrolling after 1 second of touch end
+    touchMoveTimer = setTimeout(() => {
+      clearTimeout(touchMoveTimer);
+      touchMoveTimer = null;
+    }, 1000);
   }
 </script>
+
+
+
 <div id="Pag2" class="portBkg">
   <header>
     <h1>Portafolio</h1>
@@ -180,15 +217,7 @@
 </div>
 
 <style>
-  header{
-  height: 10vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 80vw;
-  position: absolute;
-  margin: 0 10vw;
-}
+  /* Global styles */
   .portBkg {
     background-color: rgb(31, 31, 31);
     margin: 0;
@@ -200,7 +229,6 @@
     position: relative;
     z-index: 50000;
     display: flex;
-    width: 20vw;
     text-decoration: none;
     cursor: pointer;
   }
@@ -209,6 +237,18 @@
     text-decoration: underline;
   }
 
+  /* Header styles */
+  header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 80vw;
+    position: absolute;
+    margin: 0 10vw;
+  }
+
+  /* Cards styles */
   .cards-viewport {
     overflow: hidden;
     position: relative;
@@ -256,14 +296,13 @@
     position: relative; /* Add position relative to the .card element */
   }
 
-  .card:hover{
+  .card:hover {
     cursor: pointer;
   }
 
   .card.expanded {
     cursor: default;
   }
-
 
   /* Add the pseudo-element to create the background overlay */
   .card::before {
@@ -274,12 +313,7 @@
     width: 100%;
     height: 100%;
     opacity: 0.5; /* Set initial opacity to 0 */
-    background-color: rgba(
-      0,
-      0,
-      0,
-      0.3
-    ); /* Adjust the background color on hover as needed */
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust the background color on hover as needed */
     transition: opacity 0.5s ease; /* Add transition for opacity changes */
   }
 
@@ -304,35 +338,18 @@
     transition: font-size 1.5s ease;
   }
 
-
-  .content-container h2:hover {
-    font-size: 36px;
-    transition: font-size 1.5s ease;
-    text-decoration: underline;
-    text-decoration-color: aliceblue;
-  }
-
+  .content-container h2:hover,
   .content-container h2.expanded {
     font-size: 36px;
     transition: font-size 1.5s ease;
     text-decoration: underline;
     text-decoration-color: aliceblue;
     white-space: nowrap;
-
-  }
-
-  .content-container h2.expanded:hover {
-    font-size: 36px;
-    transition: font-size 1.5s ease;
-    text-decoration: underline;
-    text-decoration-color: aliceblue;
   }
 
   .content-container:hover h2:not(.expanded) {
     font-size: 36px;
     transition: font-size 1.5s ease;
-    text-decoration: underline;
-    text-decoration-color: aliceblue;
   }
 
   .content-container h3 {
@@ -379,14 +396,13 @@
 
   /* Responsive styles for mobile */
   @media (max-width: 640px) {
+    a {
+      width: auto;
+    }
 
-a{
-  width: auto;
-}
-
-    .card{
-    width: 60vw;
-    height: 40vh;
+    .card {
+      width: 60vw;
+      height: 40vh;
     }
 
     .cards-viewport {
@@ -414,78 +430,74 @@ a{
     }
 
     .content-container {
-    max-height: 45%;
-    position: relative;
-    padding: 1rem 0;
-    padding-top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: left;
-    flex: 1;
-  }
+      max-height: 45%;
+      position: relative;
+      padding: 1rem 0;
+      padding-top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: left;
+      flex: 1;
+    }
 
-  .content-container h2 {
-    margin: 0 24px;
-    font-size: 1.5rem;
-    transition: font-size 1.5s ease;
-    white-space: normal;
-  }
+    .content-container h2 {
+      margin: 0 24px;
+      font-size: 1.5rem;
+      transition: font-size 1.5s ease;
+      white-space: normal;
+    }
 
+    .content-container h2.expanded {
+      font-size: 1.7rem;
+      transition: font-size 1.5s ease;
+      white-space: normal;
+    }
 
-  .content-container h2.expanded {
-    font-size: 1.7rem;
-    transition: font-size 1.5s ease;
-    white-space: normal;
-
-  }
-
-
-  .content-container:hover h2:not(.expanded) {
-    font-size: 1.7rem;
-    transition: font-size 1.5s ease;
-  }
+    .content-container:hover h2:not(.expanded) {
+      font-size: 1.7rem;
+      transition: font-size 1.5s ease;
+    }
 
     .content-container p {
       /* Adjust max-height for mobile */
-      max-height: 4em; /* Adjust max-height for mobile */
+      font-size: 1.2rem;
+      max-height: 4em;
+      /* Adjust max-height for mobile */
       opacity: 0;
-    transition: max-height 2s ease, opacity 2s ease;;
+      transition: max-height 2s ease, opacity 2s ease;
     }
 
     .content-container p.expanded {
       /* Adjust max-height for mobile */
-      max-height: 12em; /* Adjust max-height for mobile */
+      max-height: 12em;
+      /* Adjust max-height for mobile */
       opacity: 1;
-    transition: max-height 2s ease, opacity 2s ease;;
+      transition: max-height 2s ease, opacity 2s ease;
     }
 
+    .content-container h3 {
+      margin: 0 24px;
+      font-size: 1.2rem;
+    }
 
-  .content-container h3 {
-    margin: 0 24px;
-    font-size: 1rem;
-  }
+    .content-container h3.expanded {
+      max-height: 0;
+      visibility: collapse;
+      opacity: 0;
+      transition: visibility 1.5s ease, max-height 1.5s ease;
+    }
 
-  .content-container h3.expanded{
-max-height:0;
-visibility: collapse;
-opacity: 0;
-    transition: visibility 1.5 ease, opacity 1.5 ease, max-height 1.5s ease;
-
-  }
-
-  .content-container p {
-    margin: 0 24px;
-    visibility: hidden;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-height: 6em;
-    opacity: 0;
-    transition: max-height 2s ease, opacity 2s ease;
-    position: relative;
-  }
-
-
+    .content-container p {
+      margin: 0 24px;
+      visibility: hidden;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-height: 6em;
+      opacity: 0;
+      transition: max-height 2s ease;
+      position: relative;
+    }
   }
 </style>
