@@ -2,6 +2,7 @@
   import arbol from "./treedata.json";
   import { onMount } from "svelte";
   import * as d3 from "d3"; // Import the d3 library
+    import "../../styles/circleLayout.css";
 
   onMount(() => {
     let data = arbol;
@@ -47,11 +48,10 @@ function parentFunction(jsondata) {
 
 
 let svg = d3.select('#chart').append('svg')
-    .style('background', 'black')
+    .style('background', 'rgba(0,0,0,0.5)')
     .attr('width', dim.width)
     .attr('height', dim.height)
     .attr('margin', dim.margin);
-
 
 
      document.querySelector("#chart").classList.add("center");
@@ -297,7 +297,7 @@ function updateText(data) {
         .duration(1000)
         .attr('x', (d) => d.y + 20)
         .attr('font-size', 15)
-        .attr('fill', 'yellow')
+        .attr('fill', 'black')
     );
 }
 
@@ -313,19 +313,13 @@ updateText(textLinks);
 <div id="chart">
   
 <div class="buttonGroup">
-  <p>Tree Structure</p>
+  <h2>Tree Structure</h2>
 </div>
 </div>
 
 <style>
   /* All styles are defined as global */
 
-
-
-  :global(p) {
-    font-size: 14px;
-    color: #fff;
-  }
 
   :global(#chart) {
     overflow: visible;
@@ -381,12 +375,5 @@ updateText(textLinks);
     margin-right: 10px;
   }
 
-  :global(.tooltip) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    color: #fff;
-    min-width: 120px;
-  }
+
 </style>
