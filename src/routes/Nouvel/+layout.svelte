@@ -17,24 +17,22 @@
 </script>
 
 
-<main
-  class="global-gradient">
+<main>
   <slot></slot>
   <!-- Move the SVG element inside the slotContent -->
 </main>
 
 <style>
   /* CSS styles for the header, main, and footer */
+
   main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
   }
 
-
-
-
 </style>
+
