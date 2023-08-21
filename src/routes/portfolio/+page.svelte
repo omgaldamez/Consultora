@@ -10,6 +10,7 @@
     contentBackgClicked,
     updateWindowSize,
   } from "./cardSizes.js";
+	import '../../styles/global.css';
 
   import {
     handleTouchStart,
@@ -271,7 +272,7 @@ function handleCardMouseLeave(index) {
   }
 
   .content-container {
-    max-height: 25%;
+    max-height: 33%;
     position: relative;
     padding: 1rem;
     display: flex;

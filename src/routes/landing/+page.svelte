@@ -302,21 +302,18 @@
 	}
 
 	h1 {
-    font-family: 'Poppins', sans-serif;
 		color: aliceblue;
 		font-size: 8vw;
 		margin: 0 24px;
 	}
 
 	h2 {
-    font-family: 'Poppins', sans-serif;
 		color: aliceblue;
 		font-size: 2vw;
 		margin: 12px 24px;
 	}
 
 	p {
-    font-family: 'Poppins', sans-serif;
 		color: aliceblue;
 		font-size: 1vw;
 		margin: 12px 24px;
