@@ -44,6 +44,8 @@
 	}
 </script>
 
+
+
 <div id="Pag1" class="landBkg">
 	<div
 		class="slotContent"
@@ -59,7 +61,7 @@
 							{@html `<strong>omia</strong>`}
 						</h1>
 						<h2 transition:fly={{ x: -200, duration: 1000, delay: 500 }}>
-							dviz lab
+							data vz lab
 						</h2>
 						<h2 transition:fly={{ x: -200, duration: 1000, delay: 1500 }}>
 							Consultores en soluciones de visualización y análisis de datos
@@ -113,29 +115,6 @@
     background-size: cover; /* or 'contain' depending on your preference */
 }
 
-.landBkg::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(-60deg, rgba(176, 88, 70, 0.4), rgba(226, 114, 91, 0.4), rgba(176, 88, 70, 0.4));
-    background-size: 400% 400%;
-    animation: gradient 20s ease infinite;
-}
-
-	@keyframes gradient {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
-	}
 
 	.esqIzq {
 		/* ... Other styles ... */
@@ -323,21 +302,24 @@
 	}
 
 	h1 {
+    font-family: 'Poppins', sans-serif;
 		color: aliceblue;
-		font-size: 10vw;
+		font-size: 8vw;
 		margin: 0 24px;
 	}
 
 	h2 {
+    font-family: 'Poppins', sans-serif;
 		color: aliceblue;
 		font-size: 2vw;
-		margin: 24px;
+		margin: 12px 24px;
 	}
 
 	p {
+    font-family: 'Poppins', sans-serif;
 		color: aliceblue;
 		font-size: 1vw;
-		margin: 24px;
+		margin: 12px 24px;
 	}
 
 	/* Adjust font size for smaller window width */
