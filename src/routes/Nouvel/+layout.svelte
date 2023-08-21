@@ -17,7 +17,9 @@
 </script>
 
 
-<main>
+<main
+  class="global-gradient">
+  
   <slot></slot>
   <!-- Move the SVG element inside the slotContent -->
 </main>
@@ -31,7 +33,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    /* height: 100vh; */
   }
 
 </style>

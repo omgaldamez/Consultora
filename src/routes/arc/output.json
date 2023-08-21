@@ -1,0 +1,186 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": 1,
+      "nameArtist": "Yoan Lucas"
+    },
+    {
+      "id": 2,
+      "name": 2,
+      "nameArtist": "Pino Giraldo"
+    },
+    {
+      "id": 3,
+      "name": 3,
+      "nameArtist": "Eugenio Roger"
+    },
+    {
+      "id": 4,
+      "name": 4,
+      "nameArtist": "Averill Horace"
+    },
+    {
+      "id": 5,
+      "name": 5,
+      "nameArtist": "Madison Sasha"
+    },
+    {
+      "id": 6,
+      "name": 6,
+      "nameArtist": "Layne Angiola"
+    },
+    {
+      "id": 7,
+      "name": 7,
+      "nameArtist": "Ros Artur"
+    },
+    {
+      "id": 8,
+      "name": 8,
+      "nameArtist": "Neely Courtney"
+    },
+    {
+      "id": 9,
+      "name": 9,
+      "nameArtist": "Alpha Georgie"
+    },
+    {
+      "id": 10,
+      "name": 10,
+      "nameArtist": "Waverly Jaycee"
+    },
+    {
+      "id": 11,
+      "name": 11,
+      "nameArtist": "Mel Alex"
+    },
+    {
+      "id": 12,
+      "name": 12,
+      "nameArtist": "Steph Mattie"
+    },
+    {
+      "id": 13,
+      "name": 13,
+      "nameArtist": "Connie Hunter"
+    },
+    {
+      "id": 14,
+      "name": 14,
+      "nameArtist": "Praise Ariel"
+    },
+    {
+      "id": 15,
+      "name": 15,
+      "nameArtist": "Addison Santana"
+    },
+    {
+      "id": 16,
+      "name": 16,
+      "nameArtist": "Sinclair Darcy"
+    },
+    {
+      "id": 17,
+      "name": 17,
+      "nameArtist": "Dell Jamie"
+    },
+    {
+      "id": 18,
+      "name": 18,
+      "nameArtist": "Lavern Terry"
+    },
+    {
+      "id": 19,
+      "name": 19,
+      "nameArtist": "Merritt Brook"
+    },
+    {
+      "id": 20,
+      "name": 20,
+      "nameArtist": "Chandler Cedar"
+    },
+    {
+      "id": 21,
+      "name": 21,
+      "nameArtist": "Izar Jordin"
+    },
+    {
+      "id": 22,
+      "name": 22,
+      "nameArtist": "Martie Allison"
+    },
+    {
+      "id": 23,
+      "name": 23,
+      "nameArtist": "Peyton Arin"
+    },
+    {
+      "id": 24,
+      "name": 24,
+      "nameArtist": ""
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "target": 17
+    },
+    {
+      "source": 1,
+      "target": 4
+    },
+    {
+      "source": 1,
+      "target": 5
+    },
+    {
+      "source": 2,
+      "target": 1
+    },
+    {
+      "source": 2,
+      "target": 6
+    },
+    {
+      "source": 2,
+      "target": 10
+    },
+    {
+      "source": 2,
+      "target": 4
+    },
+    {
+      "source": 4,
+      "target": 17
+    },
+    {
+      "source": 4,
+      "target": 9
+    },
+    {
+      "source": 6,
+      "target": 8
+    },
+    {
+      "source": 6,
+      "target": 17
+    },
+    {
+      "source": 7,
+      "target": 12
+    },
+    {
+      "source": 9,
+      "target": 19
+    },
+    {
+      "source": 12,
+      "target": 17
+    },
+    {
+      "source": 20,
+      "target": 12
+    }
+  ]
+}

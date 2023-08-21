@@ -56,13 +56,12 @@
 				<div class="intro esqIzq">
 					<div class="introContainer">
 						<h1 transition:fly={{ y: 50, duration: 1000, delay: 500 }}>
-							{@html `<strong>Somos</strong>`}
+							{@html `<strong>omia</strong>`}
 						</h1>
-						<h1 transition:fly={{ y: 50, duration: 1000, delay: 500 }}>
-							{@html `<strong style="color: burlywood;">C</strong><strong>ynthia</strong> <strong>Herrera<br> </strong>y 
-          <strong style="color: cornsilk;">O</strong><strong>mar</strong> <strong>Galdámez</strong>`}
-						</h1>
-						<h2 class="h2Intro" transition:fly={{ x: -200, duration: 1000, delay: 1500 }}>
+						<h2 transition:fly={{ x: -200, duration: 1000, delay: 500 }}>
+							dviz lab
+						</h2>
+						<h2 transition:fly={{ x: -200, duration: 1000, delay: 1500 }}>
 							Consultores en soluciones de visualización y análisis de datos
 						</h2>
 						<p class="lastLinkIntro" transition:fly={{ y: 50, duration: 1000, delay: 2500 }}>
@@ -87,6 +86,7 @@
 </div>
 
 <style>
+
 	a {
 		margin: 1rem;
 		color: cornsilk;
@@ -104,15 +104,26 @@
     
 	}
 
-	.landBkg {
-		background: linear-gradient(-60deg, #b05846, #e2725b, #b05846);
-		background-size: 400% 400%;
-		animation: gradient 20s ease infinite;
-		background-repeat: no-repeat;
-		margin: 0;
-		position: relative;
-		width: 100vw;
-	}
+.landBkg {
+    position: relative;
+    width: 100vw;
+    margin: 0;
+    background-image: url("./Bck_Omia.png"); /* Keep the background image */
+    background-repeat: no-repeat;
+    background-size: cover; /* or 'contain' depending on your preference */
+}
+
+.landBkg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-60deg, rgba(176, 88, 70, 0.4), rgba(226, 114, 91, 0.4), rgba(176, 88, 70, 0.4));
+    background-size: 400% 400%;
+    animation: gradient 20s ease infinite;
+}
 
 	@keyframes gradient {
 		0% {
@@ -280,7 +291,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		justify-content: flex-start;
+		justify-content: center;
 		margin: 1vh 0;
 	}
 
@@ -313,21 +324,18 @@
 
 	h1 {
 		color: aliceblue;
-		font-family: 'Montserrat', sans-serif;
-		font-size: 4vw;
+		font-size: 10vw;
 		margin: 0 24px;
 	}
 
 	h2 {
 		color: aliceblue;
-		font-family: 'Montserrat', sans-serif;
-		font-size: 1.5vw;
+		font-size: 2vw;
 		margin: 24px;
 	}
 
 	p {
 		color: aliceblue;
-		font-family: 'Montserrat', sans-serif;
 		font-size: 1vw;
 		margin: 24px;
 	}
@@ -390,7 +398,7 @@
 		}
 
 		h1 {
-			font-size: 2rem;
+			font-size: 4rem;
 			text-align: left;
 			margin: 8px 24px;
 		}
