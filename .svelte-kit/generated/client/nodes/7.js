@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/NouvelRadial/+layout.svelte";
+export { default as component } from "../../../../src/routes/portfolio/+page.svelte";
