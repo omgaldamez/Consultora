@@ -20,7 +20,7 @@
 
   let clickedCardIndex = null;
   let numCards = cartas.data;
-  console.log("numCards: ", numCards);
+  // console.log("numCards: ", numCards);
 
   // Add the resize event listener when the component is mounted
   onMount(() => {

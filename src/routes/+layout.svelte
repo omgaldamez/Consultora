@@ -13,7 +13,7 @@
     }, 300); // Adjust the timeout value to match the transition duration in CSS
   });
 
-  console.log("PAGE DATA: ", $page.route.id);
+  // console.log("PAGE DATA: ", $page.route.id);
 
 
 </script>
