@@ -1,0 +1,166 @@
+
+
+body {
+  background: var(--body-bg-color);
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+@keyframes gradient-circ {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+  .circuloMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 90vh;
+    width: 80vw;
+    overflow: hidden;
+  }
+
+  .left-buttons {
+    display: flex;
+  }
+
+  .right-buttons {
+    display: flex;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown .dropbtn {
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    margin: 0 10px;
+    color: #787C80;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .dropbtno {
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    margin: 0 10px;
+    color: #787C80;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .dropbtno:hover {
+    color: #333;
+    border: 2px solid #506ca6;
+  }
+
+  .dropdown:hover .dropbtn {
+    color: #333;
+    border: 2px solid #506ca6;
+  }
+
+  .rowBoton {
+    display: flex;
+    height: 10vh;
+    margin: 0% 5%;
+    justify-content: space-around;
+  }
+  select{
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    color: #375066;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s, border-color 0.3s;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* Set the width of the scrollbar */
+::-webkit-scrollbar {
+  background: rgba(0, 0, 0, 0.5);
+  width: 8px;
+}
+
+/* Remove the arrows (also called the scrollbar buttons) */
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+}
+
+/* Style the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+  @media (max-width: 640px) {
+    /* Mobile styles */
+    .circuloMain {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 60vh;
+      width: 80vw;
+      overflow: hidden;
+    }
+    .tamFull {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: 80vw;
+    }
+    .rowBoton {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .left-buttons,
+    .center-buttons,
+    .right-buttons {
+      margin-bottom: 1rem;
+    }
+
+    .dropdown {
+      display: flex;
+      justify-content: center;
+    }
+ 
+    .dropdown .dropbtn,
+    .dropbtno {
+      margin: 0;
+    }
+  }
+
+
+
+
+button{
+  cursor: pointer;
+}
