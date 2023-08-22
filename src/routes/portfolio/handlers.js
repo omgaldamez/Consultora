@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 
 // Variables to implement touch-based drag and drop behavior for mobile
 let touchStartX = 0;

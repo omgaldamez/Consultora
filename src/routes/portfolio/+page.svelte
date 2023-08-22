@@ -411,7 +411,7 @@ function handleCardMouseLeave(index) {
 
     .content-container p {
       /* Adjust max-height for mobile */
-      font-size: 1.2rem;
+      font-size: 1rem;
       max-height: 4em;
       /* Adjust max-height for mobile */
       opacity: 0;
